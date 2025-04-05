@@ -1,6 +1,9 @@
 name: "AI Fact Bot"
 description: "Generate and commit daily AI facts using LLMs like OpenAI or DeepSeek"
 author: "ak4bento"
+branding:
+  icon: "activity"
+  color: "blue"
 inputs:
   api_key:
     description: "API key from OpenAI or OpenRouter"
