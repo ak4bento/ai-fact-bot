@@ -50,7 +50,7 @@ Didukung dua API:
 
 ### 🤖 AI Fact of the Day
 <!-- AI-FACT-START -->
-Loading AI wisdom...
+AI can predict earthquakes by analyzing patterns in seismic data.
 <!-- AI-FACT-END -->
 
 ---
