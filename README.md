@@ -60,6 +60,31 @@ jobs:
 
 ---
 
+### 🧠 Custom Prompt (optional)
+
+You can optionally set a secret named `FACT_PROMPT` to customize the topic or style of the generated content.
+
+#### Example:
+
+```env
+FACT_PROMPT="Tell me a mind-blowing AI fact in a single sentence."
+```
+
+If `FACT_PROMPT` is not set, the default prompt will be used:
+
+> "Give me one interesting fact about AI in 1 sentence."
+
+This allows you to repurpose the bot for other use cases, such as:
+
+- 🧠 Tech facts  
+- 🤖 Random developer tips  
+- 💡 Programming quotes  
+- 🔮 Fun facts or trivia  
+
+Customize it to fit your project's theme!
+
+---
+
 ## 📝 Output
 
 The AI-generated fact will be automatically written to the `README.md`. Example:

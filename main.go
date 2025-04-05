@@ -26,12 +26,17 @@ type OpenAIResponse struct {
 }
 
 func getFact(apiKey, baseURL string) (string, error) {
+  prompt := os.Getenv("FACT_PROMPT")
+	if prompt == "" {
+		prompt = "Give me one interesting fact about AI in 1 sentence."
+	}
+
 	reqBody := map[string]interface{}{
 		"model": "gpt-3.5-turbo", // atau "deepseek-chat" (dari OpenRouter)
 		"messages": []map[string]string{
 			{
 				"role":    "user",
-				"content": "Give me one interesting fact about AI in 1 sentence.",
+				"content": prompt,
 			},
 		},
 	}
