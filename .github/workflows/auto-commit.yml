@@ -27,10 +27,10 @@ jobs:
 
       - name: Commit & push if README changed
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          TOKEN: ${{ secrets.GH_PAT }}
         run: |
           git config --global user.name "ak4bento"
           git config --global user.email "akil.dcc@gmail.com"
           git add .
           git commit -m "🤖 update AI fact"
-          git push https://ak4bento:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git HEAD:main
+          git push https://ak4bento:${TOKEN}@github.com/ak4bento/ai-fact-bot.git HEAD:main
