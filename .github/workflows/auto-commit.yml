@@ -25,6 +25,9 @@ jobs:
         run: |
           go run ai-fact-bot.go
 
+      - name: Check current git remote 
+        run: git remote -v
+
       - name: Commit & push if README changed
         env:
           TOKEN: ${{ secrets.GH_PAT }}
