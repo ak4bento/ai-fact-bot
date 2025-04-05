@@ -50,7 +50,7 @@ Didukung dua API:
 
 ### 🤖 AI Fact of the Day
 <!-- AI-FACT-START -->
-AI can predict earthquakes by analyzing patterns in seismic data.
+AI has the ability to learn, improve, and adapt without explicit programming or human intervention.
 <!-- AI-FACT-END -->
 
 ---
