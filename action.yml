@@ -1,0 +1,27 @@
+name: "AI Fact Bot"
+description: "Generate and commit daily AI facts using LLMs like OpenAI or DeepSeek"
+author: "ak4bento"
+inputs:
+  api_key:
+    description: "API key from OpenAI or OpenRouter"
+    required: true
+  api_base_url:
+    description: "Base URL for LLM API (e.g. https://openrouter.ai/api/v1)"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: "1.22"
+
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Run AI fact generator
+      run: go run main.go
+      shell: bash
+      env:
+        AI_API_KEY: ${{ inputs.api_key }}
+        AI_API_BASE_URL: ${{ inputs.api_base_url }}

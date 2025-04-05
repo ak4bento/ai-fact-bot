@@ -25,13 +25,13 @@ jobs:
           AI_API_KEY: ${{ secrets.AI_API_KEY }}
           AI_API_BASE_URL: ${{ secrets.AI_API_BASE_URL }}
         run: |
-          go run ai-fact-bot.go
+          go run main.go
 
       - name: Set remote with GH_PAT
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
-          git remote set-url origin https://ak4bento:${GH_PAT}@github.com/ak4bento/ai-fact-bot.git
+          git remote set-url origin https://ak4bento:${GH_PAT}@github.com/${{ github.repository }}.git
       
       - name: Check current git remote 
         run: git remote -v
