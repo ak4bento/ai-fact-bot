@@ -1,33 +1,34 @@
 name: 🧠 Auto Generate Golang Facts
 
 on:
-  workflow_dispatch:
   schedule:
-    - cron: '0 2 * * *' # setiap hari jam 09:00 WIB
+    - cron: '0 2 * * *'  # setiap jam 2 pagi UTC
+  workflow_dispatch:
 
 jobs:
-  run:
+  build:
     runs-on: ubuntu-latest
-    env:
-      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-      OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
       - name: Setup Go
-        uses: actions/setup-go@v4
+        uses: actions/setup-go@v5
         with:
-          go-version: '1.21'
+          go-version: '1.22'
 
-      - name: Run script
-        run: go run scripts/generate.go
+      - name: Run AI Fact Generator
+        env:
+          AI_API_KEY: ${{ secrets.AI_API_KEY }}
+          AI_API_BASE_URL: ${{ secrets.AI_API_BASE_URL }}
+        run: |
+          go run ai-fact-bot.go
 
-      - name: Commit & Push
+      - name: Commit & push if README changed
         run: |
           git config user.name "ak4bento"
           git config user.email "akil.dcc@gmail.com"
-          git add .
-          git commit -m "🟢 auto commit: $(date)" || echo "nothing to commit"
-          git push
+          git diff
+          git add README.md || true
+          git diff --cached --quiet || (git commit -m "🤖 update AI fact" && git push)

@@ -48,7 +48,10 @@ Didukung dua API:
 
 ## 📄 Output Contoh
 
-Isi `thoughts.md`:
+### 🤖 AI Fact of the Day
+<!-- AI-FACT-START -->
+Loading AI wisdom...
+<!-- AI-FACT-END -->
 
 ---
 
