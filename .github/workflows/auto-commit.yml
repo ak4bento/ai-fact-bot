@@ -25,15 +25,21 @@ jobs:
         run: |
           go run ai-fact-bot.go
 
+      - name: Set remote with GH_PAT
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: |
+          git remote set-url origin https://ak4bento:${GH_PAT}@github.com/ak4bento/ai-fact-bot.git
+      
       - name: Check current git remote 
         run: git remote -v
 
-      - name: Commit & push if README changed
-        env:
-          TOKEN: ${{ secrets.GH_PAT }}
+      - name: Commit & push 
         run: |
           git config --global user.name "ak4bento"
           git config --global user.email "akil.dcc@gmail.com"
-          git add .
-          git commit -m "🤖 update AI fact"
-          git push https://ak4bento:${TOKEN}@github.com/ak4bento/ai-fact-bot.git HEAD:main
+          git add README.md || true
+          git diff --cached --quiet || (
+            git commit -m "🤖 update AI fact" &&
+            git push origin HEAD:main
+          )
