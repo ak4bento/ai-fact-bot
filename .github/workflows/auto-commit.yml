@@ -26,9 +26,14 @@ jobs:
           go run ai-fact-bot.go
 
       - name: Commit & push if README changed
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
         run: |
-          git config user.name "ak4bento"
-          git config user.email "akil.dcc@gmail.com"
+          git config --global user.name "ak4bento"
+          git config --global user.email "akil.dcc@gmail.com"
           git diff
           git add README.md || true
-          git diff --cached --quiet || (git commit -m "🤖 update AI fact" && git push)
+          git diff --cached --quiet || (
+            git commit -m "🤖 update AI fact" &&
+            git push https://ak4bento:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git HEAD:main
+          )
