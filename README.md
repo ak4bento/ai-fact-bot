@@ -1,52 +1,78 @@
-# 🤖 Golang AI Facts Bot 🧠
-> Auto commit daily Golang facts using AI (OpenAI or OpenRouter).
+# 🤖 AI Fact Bot
 
-![Auto Commit](https://github.com/ak4bento/golang-ai-facts-bot/actions/workflows/auto-commit.yml/badge.svg)
-![Made with Go](https://img.shields.io/badge/Made%20with-Go-blue?logo=go)
-![License](https://img.shields.io/github/license/ak4bento/golang-ai-facts-bot)
-![Template](https://img.shields.io/badge/template-repo-brightgreen)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/ak4bento/ai-fact-bot/ai-fact.yml?branch=main)
+![GitHub license](https://img.shields.io/github/license/ak4bento/ai-fact-bot)
+![Last Commit](https://img.shields.io/github/last-commit/ak4bento/ai-fact-bot)
 
----
+**AI Fact Bot** is a GitHub Action that automatically generates daily AI-related facts using large language models (LLMs) like **OpenAI GPT** or **DeepSeek R1 Zero** via [OpenRouter](https://openrouter.ai). The fact is directly written to the `README.md` file and committed automatically to your repository.
 
-## 🧠 Tentang Proyek
+## 🚀 Features
 
-Repo ini otomatis menambahkan 1 fakta unik tentang **bahasa pemrograman Go** ke file `thoughts.md` setiap hari menggunakan AI — tanpa harus kamu buka laptop!
-
-Didukung dua API:
-- ✅ **OpenAI** (dengan `OPENAI_API_KEY`)
-- ✅ **OpenRouter** (misal: DeepSeek R1 Zero)
+- Uses OpenAI or OpenRouter API
+- Can be triggered on a schedule (`cron`) or manually
+- Automatically commits fact updates
+- Reusable in **any repo**
 
 ---
 
-## 🚀 Cara Pakai (GitHub Template)
+## 🧰 Requirements
 
-1. Klik tombol `Use this template` (di atas)
-2. Fork repo ini ke akun kamu
-3. Buka **Settings > Secrets > Actions**
-4. Tambahkan salah satu secret berikut:
-
-### ✅ Pakai OpenAI
-### ✅ Pakai OpenRouter (contoh: DeepSeek R1 Zero)
-
+1. **Go 1.22+** (automatically handled by workflow)
+2. Add **2 GitHub Secrets** to your repo:
+   - `AI_API_KEY` → Your API key from OpenAI or OpenRouter
+   - `GH_PAT` → A Personal Access Token with `repo` permission (for pushing commits)
 
 ---
 
-## 🛠️ Cara Kerja
+## 🔧 How to Use
 
-- Script Go (`scripts/generate.go`) akan memanggil ChatGPT/DeepSeek untuk membuat 1 fakta Golang
-- Fakta disimpan ke `thoughts.md`
-- Hasilnya di-commit dan di-push otomatis tiap hari
+Add the following to `.github/workflows/ai-fact.yml` in your repo:
+
+```yaml
+name: Daily AI Fact
+
+on:
+  workflow_dispatch:  # Trigger manually via GitHub UI
+  schedule:
+    - cron: '0 0 * * *'  # Every day at 00:00 UTC
+
+jobs:
+  update-fact:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ak4bento/ai-fact-bot@v1
+        with:
+          api_key: ${{ secrets.AI_API_KEY }}
+          api_base_url: "https://openrouter.ai/api/v1"
+
+      - name: Commit & Push updated README
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: |
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+          git add README.md || true
+          git diff --cached --quiet || (
+            git commit -m "🤖 update AI fact" &&
+            git push https://${{ github.actor }}:${GH_PAT}@github.com/${{ github.repository }}.git HEAD:main
+          )
+```
 
 ---
 
-## ⏰ Schedule
+## 📝 Output
 
-- Otomatis jalan setiap hari jam **09:00 WIB**
-- Bisa dijalankan manual lewat tab `Actions`
+The AI-generated fact will be automatically written to the `README.md`. Example:
+
+```md
+## 🔍 AI Fact of the Day
+
+AI can improve software development efficiency by up to 40% through automated testing and code generation.
+```
 
 ---
 
-## 📄 Output Contoh
+## 📄 Example Output 
 
 ### 🤖 AI Fact of the Day
 <!-- AI-FACT-START -->
@@ -55,15 +81,28 @@ AI has the ability to learn, improve, and adapt without explicit programming or 
 
 ---
 
-## ⚙️ Teknologi
+## 🔒 Security
 
-- [Go](https://golang.org/)
-- [OpenAI API](https://platform.openai.com/)
-- [OpenRouter](https://openrouter.ai/)
-- [GitHub Actions](https://github.com/features/actions)
+- Your API key is never printed or logged.
+- Always store `AI_API_KEY` and `GH_PAT` in GitHub Secrets.
 
 ---
 
-## 📜 Lisensi
+## 💡 Tips
 
-[MIT](LICENSE)
+- Fork this repo and customize the fact content or output.
+- You can also use it to generate quotes, fun facts, or any kind of daily snippet!
+
+---
+
+## 👨‍💻 Contributing
+
+Pull requests and feedback are welcome!  
+Feel free to open an issue or submit a PR if you want to improve this action.
+
+---
+
+## 📄 License
+
+MIT License © [ak4bento](https://github.com/ak4bento)
+
