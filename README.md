@@ -1,20 +1,66 @@
-# 🧠 Golang AI Facts Bot
+# 🤖 Golang AI Facts Bot 🧠
+> Auto commit daily Golang facts using AI (OpenAI or OpenRouter).
 
-Bot ini akan menambahkan satu fakta unik tentang Golang ke file `thoughts.md` setiap hari — menggunakan AI (OpenAI atau OpenRouter).
+![Auto Commit](https://github.com/ak4bento/golang-ai-facts-bot/actions/workflows/auto-commit.yml/badge.svg)
+![Made with Go](https://img.shields.io/badge/Made%20with-Go-blue?logo=go)
+![License](https://img.shields.io/github/license/ak4bento/golang-ai-facts-bot)
+![Template](https://img.shields.io/badge/template-repo-brightgreen)
 
-## 🚀 Cara Pakai
+---
 
-1. Klik `Use this template` atau fork repo ini
-2. Masuk ke **Settings > Secrets > Actions**
-3. Tambahkan salah satu:
+## 🧠 Tentang Proyek
 
-### ✅ Opsi 1: OpenAI API
+Repo ini otomatis menambahkan 1 fakta unik tentang **bahasa pemrograman Go** ke file `thoughts.md` setiap hari menggunakan AI — tanpa harus kamu buka laptop!
 
-### ✅ Opsi 2: OpenRouter (contoh: DeepSeek R1 Zero)
+Didukung dua API:
+- ✅ **OpenAI** (dengan `OPENAI_API_KEY`)
+- ✅ **OpenRouter** (misal: DeepSeek R1 Zero)
 
-4. Workflow akan jalan otomatis setiap hari jam 09:00 WIB atau bisa dijalankan manual via tab **Actions**.
+---
 
-## 📄 Output
+## 🚀 Cara Pakai (GitHub Template)
 
-Contoh di `thoughts.md`:
+1. Klik tombol `Use this template` (di atas)
+2. Fork repo ini ke akun kamu
+3. Buka **Settings > Secrets > Actions**
+4. Tambahkan salah satu secret berikut:
 
+### ✅ Pakai OpenAI
+### ✅ Pakai OpenRouter (contoh: DeepSeek R1 Zero)
+
+
+---
+
+## 🛠️ Cara Kerja
+
+- Script Go (`scripts/generate.go`) akan memanggil ChatGPT/DeepSeek untuk membuat 1 fakta Golang
+- Fakta disimpan ke `thoughts.md`
+- Hasilnya di-commit dan di-push otomatis tiap hari
+
+---
+
+## ⏰ Schedule
+
+- Otomatis jalan setiap hari jam **09:00 WIB**
+- Bisa dijalankan manual lewat tab `Actions`
+
+---
+
+## 📄 Output Contoh
+
+Isi `thoughts.md`:
+
+---
+
+## ⚙️ Teknologi
+
+- [Go](https://golang.org/)
+- [OpenAI API](https://platform.openai.com/)
+- [OpenRouter](https://openrouter.ai/)
+- [GitHub Actions](https://github.com/features/actions)
+
+---
+
+## 📜 Lisensi
+
+[MIT](LICENSE)
