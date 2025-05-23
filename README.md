@@ -101,7 +101,7 @@ AI can improve software development efficiency by up to 40% through automated te
 
 ### 🤖 AI Fact of the Day
 <!-- AI-FACT-START -->
-AI can be used to predict future behavior and trends based on patterns and data analysis.
+The term "artificial intelligence" was coined in 1956 at a conference at Dartmouth College.
 <!-- AI-FACT-END -->
 
 ---
