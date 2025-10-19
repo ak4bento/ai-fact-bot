@@ -101,7 +101,7 @@ AI can improve software development efficiency by up to 40% through automated te
 
 ### 🤖 AI Fact of the Day
 <!-- AI-FACT-START -->
-AI can be used to create personalized learning experiences for students based on their individual strengths and weaknesses.
+AI systems can develop biases if they are trained on data that is not diverse or representative of all demographics.
 <!-- AI-FACT-END -->
 
 ---
