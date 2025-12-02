@@ -101,7 +101,7 @@ AI can improve software development efficiency by up to 40% through automated te
 
 ### 🤖 AI Fact of the Day
 <!-- AI-FACT-START -->
-AI can be used in healthcare to analyze medical images and help diagnose conditions such as cancers.
+AI systems are able to learn and improve their performance over time through a process known as machine learning.
 <!-- AI-FACT-END -->
 
 ---
