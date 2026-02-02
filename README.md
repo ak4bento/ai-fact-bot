@@ -101,7 +101,7 @@ AI can improve software development efficiency by up to 40% through automated te
 
 ### 🤖 AI Fact of the Day
 <!-- AI-FACT-START -->
-AI is being used in medical research to help diagnose and treat diseases more accurately and efficiently.
+The term "artificial intelligence" was coined in 1956 by computer scientist John McCarthy.
 <!-- AI-FACT-END -->
 
 ---
